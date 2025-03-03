@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+@config "../../tailwind.config.ts";
+
+@theme {
+  --animate-slideDown: slideDown 0.5s ease-out;
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  --animate-marquee: marquee 60s linear infinite;
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Container option behave strangely */
+html {
+  position: relative;
+}
+
+/* Loading */
+body {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+body:not(.loaded) main {
+  visibility: hidden;
+}
+
+/* Pagefind search */
+.pagefind-ui {
+  --pagefind-ui-scale: 0.75;
+  --pagefind-ui-primary: navy;
+  --pagefind-ui-text: black;
+  --pagefind-ui-border: slategrey;
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 0;
+  width: 50%;
+  --pagefind-ui-background: white;
+}
+.pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 0px;
+  z-index: 9999;
+  padding: 0 2em 1em;
+  overflow-y: auto;
+  box-shadow:
+    0 10px 10px -5px rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  background-color: var(--pagefind-ui-background);
+}
+
+.pagefind-ui .pagefind-ui__result-link {
+  color: var(--pagefind-ui-primary);
+}
+
+.pagefind-ui .pagefind-ui__result-excerpt {
+  color: var(--pagefind-ui-text);
+}
+
+/* Embla Carousel */
+.embla__dot {
+  -webkit-tap-highlight-color: (rgba(49, 49, 49), 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+.embla__dot:after {
+  content: '';
+  background-color: #efefef;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+.embla__dot--selected:after {
+  background-color: #caf34d;
+}
